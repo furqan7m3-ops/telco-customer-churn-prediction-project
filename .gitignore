@@ -1,6 +1,7 @@
 venv/
 store/
 data/
+confusion_matrix.png
 
 
 # Byte-compiled / optimized / DLL files
@@ -223,4 +224,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
-confusion_matrix.png
+
+# MLflow
+mlruns/
+mlflow.db
