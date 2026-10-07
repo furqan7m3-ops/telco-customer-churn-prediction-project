@@ -1,6 +1,6 @@
 from preprocess import load_dataset, preprocess_data
 
-from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
     accuracy_score,
     precision_score,
@@ -29,8 +29,9 @@ raw_data = mlflow.data.from_pandas(df,source='data/raw/telco_customer_churn.csv'
 # -----------------------------
 
 params = {
-    "solver": "lbfgs",
-    "max_iter": 250
+    "n_estimators": 100,
+    "max_depth": 5,
+    "random_state": 42
 }
 
 
@@ -60,13 +61,13 @@ with mlflow.start_run():
     # Train model
     # -------------------------
 
-    model = LogisticRegression(**params)
+    model = RandomForestClassifier(**params)
 
     model.fit(X_train, y_train)
     #-------------------------
     # Log model
     #-------------------------
-    mlflow.sklearn.log_model(model, "model")
+    mlflow.sklearn.log_model(model, "model", skops_trusted_types=["sklearn.tree._tree.Tree"])
 
 
     # -------------------------
