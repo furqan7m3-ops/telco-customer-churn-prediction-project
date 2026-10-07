@@ -18,32 +18,19 @@ import mlflow.sklearn
 
 mlflow.set_experiment("Telco Customer Churn Prediction")
 
-
-# -----------------------------
-# Enable MLflow autologging
-# -----------------------------
-
-mlflow.sklearn.autolog(
-    log_input_examples=False,
-    log_model_signatures=True,
-    log_models=True
-)
-
-
 # -----------------------------
 # Load dataset
 # -----------------------------
 
 df = load_dataset("data/raw/telco_customer_churn.csv")
-
-
+raw_data = mlflow.data.from_pandas(df,source='data/raw/telco_customer_churn.csv', name='telco-customer-churn')
 # -----------------------------
 # Model parameters
 # -----------------------------
 
 params = {
     "solver": "lbfgs",
-    "max_iter": 500
+    "max_iter": 250
 }
 
 
@@ -52,6 +39,16 @@ params = {
 # -----------------------------
 
 with mlflow.start_run():
+    # -------------------------
+    # Log input raw data
+    # -------------------------
+    mlflow.log_input(raw_data)
+
+
+    # -------------------------
+    #log model parameters
+    # -------------------------
+    mlflow.log_params(params)
 
     # -------------------------
     # Preprocess dataset
@@ -66,6 +63,11 @@ with mlflow.start_run():
     model = LogisticRegression(**params)
 
     model.fit(X_train, y_train)
+    #-------------------------
+    # Log model
+    #-------------------------
+    mlflow.sklearn.log_model(model, "model")
+
 
     # -------------------------
     # Predictions
@@ -82,7 +84,17 @@ with mlflow.start_run():
     recall = recall_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred)
 
-    print(f"Accuracy: {accuracy:.4f}")
-    print(f"Precision: {precision:.4f}")
-    print(f"Recall: {recall:.4f}")
-    print(f"F1 Score: {f1:.4f}")
+    print(f"Accuracy: {accuracy:.2f}")
+    print(f"Precision: {precision:.2f}")
+    print(f"Recall: {recall:.2f}")
+    print(f"F1 Score: {f1:.2f}")
+
+    #--------------------------
+    #Log evaluation metrics
+    #--------------------------
+    mlflow.log_metrics({
+        "training_accuracy": accuracy,
+        "training_precision": precision,
+        "training_recall": recall,
+        "training_f1_score": f1
+    })
