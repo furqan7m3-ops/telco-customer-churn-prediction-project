@@ -9,7 +9,7 @@ feature_store = {
     'numerical_features': ['MonthlyCharges', 'TotalCharges'],
     'nominal_categorical_features':['gender', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'PaymentMethod', 'Contract'],
     'binary_categorical_features':['Partner', 'Dependents', 'PaperlessBilling','PhoneService'],
-    'target': 'churn'
+    'target': 'Churn'
 }
 
 # loading the dataset

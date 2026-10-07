@@ -1,4 +1,4 @@
-from src.preprocess import load_dataset, preprocess_data
+from preprocess import load_dataset, preprocess_data
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
     accuracy_score,
@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 # MLflow experiment
 # -----------------------------
 
-mlflow.set_experiment("Telco Customer Churn Prediction Experiment")
+mlflow.set_experiment("Telco Customer Churn Prediction")
 
 
 # -----------------------------
