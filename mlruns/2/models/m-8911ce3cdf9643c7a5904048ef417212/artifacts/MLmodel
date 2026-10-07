@@ -1,0 +1,30 @@
+artifact_path: file:D:/AI-ML Projects/Telco Customer Churn Prediction/mlruns/2/models/m-8911ce3cdf9643c7a5904048ef417212/artifacts
+flavors:
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.9.1
+    skops_trusted_types: null
+is_signature_from_type_hint: false
+mlflow_version: 3.17.0
+model_id: m-8911ce3cdf9643c7a5904048ef417212
+model_size_bytes: 1940
+model_uuid: m-8911ce3cdf9643c7a5904048ef417212
+prompts: null
+run_id: 56c8a1b7f33c4f6c92079572331521ee
+signature:
+  inputs: '[{"type": "string", "name": "gender", "required": true}, {"type": "string",
+    "name": "MultipleLines", "required": true}, {"type": "string", "name": "InternetService",
+    "required": true}, {"type": "string", "name": "OnlineSecurity", "required": true},
+    {"type": "string", "name": "OnlineBackup", "required": true}, {"type": "string",
+    "name": "DeviceProtection", "required": true}, {"type": "string", "name": "TechSupport",
+    "required": true}, {"type": "string", "name": "StreamingTV", "required": true},
+    {"type": "string", "name": "StreamingMovies", "required": true}, {"type": "string",
+    "name": "PaymentMethod", "required": true}, {"type": "string", "name": "Contract",
+    "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1,
+    33]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-10-07 10:42:47.523442'

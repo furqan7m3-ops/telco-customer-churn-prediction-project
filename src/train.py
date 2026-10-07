@@ -23,7 +23,11 @@ mlflow.set_experiment("Telco Customer Churn Prediction")
 # Enable MLflow autologging
 # -----------------------------
 
-mlflow.sklearn.autolog()
+mlflow.sklearn.autolog(
+    log_input_examples=False,
+    log_model_signatures=True,
+    log_models=True
+)
 
 
 # -----------------------------
@@ -39,7 +43,7 @@ df = load_dataset("data/raw/telco_customer_churn.csv")
 
 params = {
     "solver": "lbfgs",
-    "max_iter": 300
+    "max_iter": 500
 }
 
 
@@ -48,21 +52,6 @@ params = {
 # -----------------------------
 
 with mlflow.start_run():
-
-    # -------------------------
-    # Log dataset
-    # -------------------------
-
-    dataset = mlflow.data.from_pandas(
-        df,
-        source="data/raw/telco_customer_churn.csv",
-        name="telco-customer-churn"
-    )
-
-    mlflow.log_input(
-        dataset,
-        context="training"
-    )
 
     # -------------------------
     # Preprocess dataset
