@@ -48,10 +48,10 @@ def preprocess_data(df):
     X_test_processed_df = pd.DataFrame(X_test_processed)
     #combine target variable with processed features
     X_train_processed_df[feature_store['target']] = y_train_encoded
-    X_train_processed_df.to_csv('./data/X_train_processed.csv', index=False)
+    X_train_processed_df.to_csv('data/preprocessed/X_train_processed.csv', index=False)
 
     X_test_processed_df[feature_store['target']] = y_test_encoded
-    X_test_processed_df.to_csv('./data/X_test_processed.csv', index=False)
+    X_test_processed_df.to_csv('data/preprocessed/X_test_processed.csv', index=False)
 
     return X_train_processed, X_test_processed, y_train_encoded, y_test_encoded
 
